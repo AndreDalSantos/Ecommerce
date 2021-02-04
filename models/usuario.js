@@ -56,7 +56,7 @@ UsuarioSchema.methods.gerarToken = function(){
     exp.setDate(hoje.getDate() + 15);
 
     return jwt.sign({
-        id: this.__id,
+        id: this._id,
         email: this.email,
         nome: this.nome,
         exp: parseFloat(exp.getTime() / 1000, 10)
@@ -64,13 +64,13 @@ UsuarioSchema.methods.gerarToken = function(){
 };
 
 UsuarioSchema.methods.enviarAuthJSON = function() {
-    return { 
+    return {
         _id: this._id,
         nome: this.nome,
         email: this.email,
         loja: this.loja,
         role: this.permissao,
-        token: this.gerarToken() 
+        token: this.gerarToken()
    };
 };
 
